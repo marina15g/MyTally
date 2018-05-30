@@ -1,0 +1,23 @@
+Name: MARINA GEORGOPOULOU
+AM: 1115201300030
+
+O fakelos perilamvanei:
+~ta source files: root.c , Sorter.c , SplitterMerger.c , MyDataStructs.c
+~to header file: MyDataStructs.h
+~to Makefile
+
+-> Gia thn epikoinwnia meta3u twn diergasiwn xrhsimopoiountai named pipes (fifos). Ka8e diergasia gonios dhmiourgei numOfSMs named 
+pipes, ena gia ka8e paidi. Ta named pipes pairnoun onoma ths morfhs pipeXXXXchY opou XXXX einai to process id ths diergasias gonios
+kai Y einai o ari8mos ka8e paidiou (h seira kata thn opoia dhmiourgh8hke. i=0,1,2...). Molis oloklhrw8ei ka8e metafora dedomenwn 
+apo mia diergasia se mia allh ta named pipes diagrafontai
+
+->Gia thn katametrhsh twn shmatwn pou lamvanei h root xrhsimopoieitai mia global betavlhth typou volatile sig_atomic_t opou au3anetai
+kata 1 mesa sthn dsignal handler ka8e fora
+
+->Gia thh diaxeirish twn Ypoyhfiwn kai twn eklogikwn kentrwn xrhsimopoiountai mona-sundedemenes listes
+
+->Oi sorters kai oi splitters/mergers enhmerwnoun tis listes tous me vash to onoma tou ypoyhfiou  h' to ID tou eklogikou kentrou 
+antistoixa. Thn ta3inomish twn duo listwn thn kanei h riza.
+
+->An h riza lavei ligotera apo l^d shmata ektupwnei mono ton ari8mo twn  shmatwn pou elave
+
