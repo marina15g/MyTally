@@ -497,13 +497,12 @@ void DeleteTimesList(Times *TL){
 		return;
 	}
 	C=TL->FirstProcess;
-	n=C->Next;
-	while(n!=NULL){
+	while(C!=NULL){
+		n=C->Next;
 		free(C);
 		C=n;
-		n=n->Next;
 	}
-	free(C);
+//	free(C);
 	free(TL);
 	return;
 }
