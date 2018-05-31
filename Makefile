@@ -25,3 +25,5 @@ Sorter.o: Sorter.c MyDataStructs.h
 SplitterMerger.o: SplitterMerger.c MyDataStructs.h
 	$(CC) $(FLAGS) SplitterMerger.c
 
+clean:
+	rm -f $(OUT0) $(OUT1) $(OUT2) $(OBJS) pipe* resultspercenter.jpg results.jpg plot1.p
