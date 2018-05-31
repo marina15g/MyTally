@@ -116,7 +116,7 @@ int main(int argc,char ** argv){
 		}	/*childpid array contains the process ids of all child-processes*/
 		int childpid[numOfSMs],pipedesc[numOfSMs],k;/*pipedesc array contains the file descriptors of every child's fifo*/
 		char **pipename,pipe[SIZEOFBUFFER],buff[SIZEOFBUFFER],**arg;
-		arg=malloc(8*sizeof(char*));
+		arg=malloc(9*sizeof(char*));
 		pipename=malloc(numOfSMs*sizeof(char*));
 		for(i=0;i<8;i++){	/*allocating memory for the arguments' vector*/
 			arg[i]=malloc(SIZEOFBUFFER*sizeof(char));
@@ -125,10 +125,12 @@ int main(int argc,char ** argv){
 			pipename[i]=malloc(SIZEOFBUFFER*sizeof(char));
 		}
 		strcpy(buff,"pipe");
+		strcpy(arg[0],"./SplitterMerger");
 		strcpy(arg[1],TextFile);	
 		sprintf(arg[5],"%d",getpid());	/*Argument #5 contains the root process id*/
 		sprintf(arg[6],"%d",numOfSMs);
 		sprintf(arg[7],"%d",Depth-1);	/*Depth is being reduced by 1 for the the child processes*/
+		arg[8]=NULL;
 		for(i=0;i<numOfSMs;i++){
 			sprintf(arg[2],"%ld",0+i*(End/numOfSMs));/*argument #2 indicates the starting point...*/
 			if(i!=numOfSMs-1){			/*... in TextFile for the child process*/
@@ -154,6 +156,7 @@ int main(int argc,char ** argv){
 			if(childpid[i]==0){
 				execvp("./SplitterMerger",arg);	/*splitter program is being called with the arguments above*/
 				printf("Could not execute SplitterMerger program\n");
+				perror("STG");
 				exit(-1);
 			}
 		}
@@ -195,6 +198,7 @@ int main(int argc,char ** argv){
 		ExecutionTimes * T,*r;
 		Times * TL;
 		TL=malloc(sizeof(Times));
+		TL->FirstProcess=NULL;
 		for(i=0;i<numOfSMs;i++){
 			GetTimes(pipedesc[i],TL);	/*Updating Times List*/
 		}
@@ -230,8 +234,8 @@ int main(int argc,char ** argv){
 		int gnu=fork();	/*Creating new process to execute gnuplot*/
 		if(gnu==0){
 			char **args;
-			args=malloc(sizeof(char *));
-			args[0]=malloc(sizeof(char));
+			args=malloc(2*sizeof(char *));
+			args[0]=malloc(9*sizeof(char));
 			strcpy(args[0],"script.p");	/*Adding as argument the name of the script to load*/
 			args[1]=NULL;
 			execlp("gnuplot"," ","plot1.p",NULL);
